@@ -1,0 +1,262 @@
+[
+    {
+        "id": 1,
+        "title": "Integración de Bot con CRM",
+        "active": false,
+        "status": "solucionado",
+        "user": {
+            "avatar": "https://randomuser.me/api/portraits/men/32.jpg",
+            "_id": "5f8d3b7a2e4c1a0d6e7f8g9",
+            "name": "Ricardo Méndez",
+            "role": "admin"
+        },
+        "conversacion": [
+            {
+                "type": "user",
+                "message": "Hola, estoy intentando crear un bot para automatizar respuestas en mi sitio web, pero no sé cómo integrarlo con mi CRM. ¿Me pueden ayudar?",
+                "timestamp": "2023-05-20T09:15:22Z"
+            },
+            {
+                "type": "admin",
+                "message": "Claro, Ricardo. ¿Estás usando nuestro constructor de bots o una API externa? Te enviaré la documentación para ambas opciones.",
+                "timestamp": "2023-05-20T09:17:45Z",
+                "adminName": "Sofía Carrasco"
+            },
+            {
+                "type": "user",
+                "message": "Usaré el constructor de bots. Necesito que el bot gestione consultas frecuentes y redirija tickets complejos a mi equipo.",
+                "timestamp": "2023-05-20T09:18:30Z"
+            },
+            {
+                "type": "admin",
+                "message": "Perfecto. Revisa este [enlace] para configurar flujos de conversación. Si necesitas ayuda con los triggers, avísame.",
+                "timestamp": "2023-05-20T09:20:10Z",
+                "adminName": "Sofía Carrasco"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Recuperación de Contraseña",
+        "active": false,
+        "status": "solucionado",
+        "user": {
+            "avatar": "https://randomuser.me/api/portraits/women/45.jpg",
+            "_id": "6g9e4c8b3f2a1d0e5f6g7h8",
+            "name": "Sofía Carrasco",
+            "role": "admin"
+        },
+        "conversacion": [
+            {
+                "type": "user",
+                "message": "¡Urgente! Olvidé mi contraseña y no puedo acceder al panel de administración de mis bots. ¿Cómo la recupero?",
+                "timestamp": "2023-05-21T14:05:33Z"
+            },
+            {
+                "type": "admin",
+                "message": "Hola Sofía. Ve a '¿Olvidaste tu contraseña?' en el login. Te enviaremos un código a tu correo ricardo.mendez@gmail.com.",
+                "timestamp": "2023-05-21T14:07:12Z",
+                "adminName": "Diego Pérez"
+            },
+            {
+                "type": "user",
+                "message": "No recibí el correo. ¿Pueden reenviarlo?",
+                "timestamp": "2023-05-21T14:08:01Z"
+            },
+            {
+                "type": "admin",
+                "message": "Verificado. Acabo de reenviar el código. Revisa tu bandeja de spam por si acaso.",
+                "timestamp": "2023-05-21T14:09:30Z",
+                "adminName": "Diego Pérez"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Error en Bot después de Actualización",
+        "active": false,
+        "status": "no solucionado",
+        "user": {
+            "avatar": "https://randomuser.me/api/portraits/men/18.jpg",
+            "_id": "7h0f5d9c4e3b2a1f0g1h2i3",
+            "name": "Diego Pérez",
+            "role": "admin"
+        },
+        "conversacion": [
+            {
+                "type": "user",
+                "message": "Mi bot dejó de responder comandos después de una actualización. ¿Es un error conocido?",
+                "timestamp": "2023-05-22T11:22:18Z"
+            },
+            {
+                "type": "admin",
+                "message": "Sí, hubo un bug en la última versión. Estamos lanzando un parche hoy. Mientras tanto, reinicia el servicio del bot.",
+                "timestamp": "2023-05-22T11:25:03Z",
+                "adminName": "Ricardo Méndez"
+            },
+            {
+                "type": "user",
+                "message": "Reinicié y sigue igual. Adjunto logs de error.",
+                "timestamp": "2023-05-22T11:26:45Z"
+            },
+            {
+                "type": "admin",
+                "message": "Gracias. Revisaré los logs y te notifico por correo en menos de 1 hora.",
+                "timestamp": "2023-05-22T11:28:10Z",
+                "adminName": "Ricardo Méndez"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "title": "Conexión con WhatsApp Business",
+        "active": false,
+        "status": "solucionado",
+        "user": {
+            "avatar": "https://randomuser.me/api/portraits/men/40.jpg",
+            "_id": "8i1g6e0d5f4c3b2g1h2i3j4",
+            "name": "Javier Silva",
+            "role": "user"
+        },
+        "conversacion": [
+            {
+                "type": "user",
+                "message": "¿Puedo conectar mi bot a WhatsApp Business? Necesito que envíe recordatorios automáticos.",
+                "timestamp": "2023-05-23T16:10:42Z"
+            },
+            {
+                "type": "admin",
+                "message": "Sí, pero requiere aprobación de Meta. Te guío paso a paso: 1) Registra tu bot como app oficial, 2) Solicita acceso a la API de WhatsApp.",
+                "timestamp": "2023-05-23T16:13:15Z",
+                "adminName": "Sofía Carrasco"
+            },
+            {
+                "type": "user",
+                "message": "¿Tienen plantillas para mensajes automáticos que cumplan con las políticas de Meta?",
+                "timestamp": "2023-05-23T16:14:33Z"
+            },
+            {
+                "type": "admin",
+                "message": "Sí, aquí tienes [ejemplos aprobados]. Evita palabras como 'oferta' o 'compra' en los mensajes no solicitados.",
+                "timestamp": "2023-05-23T16:16:20Z",
+                "adminName": "Sofía Carrasco"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "title": "Problema con Filtro de Palabras",
+        "active": false,
+        "status": "no solucionado",
+        "user": {
+            "avatar": "https://randomuser.me/api/portraits/women/15.jpg",
+            "_id": "9j2h7f1e6g5d4c3h2i3j4k5",
+            "name": "Valentina López",
+            "role": "user"
+        },
+        "conversacion": [
+            {
+                "type": "user",
+                "message": "Mi bot está bloqueando usuarios por error. ¿Cómo reviso la lista de bloqueos?",
+                "timestamp": "2023-05-24T10:05:12Z"
+            },
+            {
+                "type": "admin",
+                "message": "Ve a 'Configuración > Seguridad > Lista de bloqueos'. Si es un falso positivo, desactiva el filtro de palabras clave temporalmente.",
+                "timestamp": "2023-05-24T10:07:30Z",
+                "adminName": "Diego Pérez"
+            },
+            {
+                "type": "user",
+                "message": "Encontré el problema: el bot bloquea mensajes con la palabra 'crédito'. ¿Puedo personalizar el filtro?",
+                "timestamp": "2023-05-24T10:08:05Z"
+            },
+            {
+                "type": "admin",
+                "message": "Sí, edita el archivo `keywords.json` en tu dashboard para ajustar la lista de palabras bloqueadas.",
+                "timestamp": "2023-05-24T10:10:40Z",
+                "adminName": "Diego Pérez"
+            },
+            {
+                "type": "user",
+                "message": "Perfecto, ya lo he editado. ¿Cómo ajusto la sensibilidad del filtro?",
+                "timestamp": "2023-05-24T10:12:15Z"
+            },
+            {
+                "type": "admin",
+                "message": "Para ajustar la sensibilidad, modifica el parámetro `sensitivity` en el archivo `keywords.json`. Si necesitas ayuda, aquí tienes un [tutorial].",
+                "timestamp": "2023-05-24T10:14:00Z",
+                "adminName": "Diego Pérez"
+            },
+            {
+                "type": "user",
+                "message": "¡Listo! Ya ajusté la sensibilidad. Gracias por la ayuda.",
+                "timestamp": "2023-05-24T10:16:10Z"
+            },
+            {
+                "type": "admin",
+                "message": "¡De nada! Avísame si necesitas más ayuda. Estoy aquí para lo que necesites.",
+                "timestamp": "2023-05-24T10:18:20Z",
+                "adminName": "Diego Pérez"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "title": "Problema de Rendimiento del Bot",
+        "active": true,
+        "status": "en proceso",
+        "user": {
+            "avatar": "https://randomuser.me/api/portraits/women/15.jpg",
+            "_id": "9j2h7f1e6g5d4c3h2i3j4k5",
+            "name": "Valentina López",
+            "role": "user"
+        },
+        "conversacion": [
+            {
+                "type": "user",
+                "message": "Mi bot está funcionando muy lento, ¿cómo puedo mejorar el rendimiento?",
+                "timestamp": "2023-06-05T11:30:12Z"
+            },
+            {
+                "type": "admin",
+                "message": "Revisa los logs para ver si hay errores específicos que estén ralentizando el bot. Además, asegúrate de que la base de datos esté optimizada.",
+                "timestamp": "2023-06-05T11:32:20Z",
+                "adminName": "Carlos Gómez"
+            },
+            {
+                "type": "user",
+                "message": "No encontré ningún error en los logs. ¿Hay algo más que pueda hacer?",
+                "timestamp": "2023-06-05T11:35:45Z"
+            },
+            {
+                "type": "admin",
+                "message": "Verifica si el bot está realizando muchas peticiones simultáneas. Intenta usar un sistema de caché para reducir la carga en la base de datos.",
+                "timestamp": "2023-06-05T11:37:00Z",
+                "adminName": "Carlos Gómez"
+            },
+            {
+                "type": "user",
+                "message": "Probé con el sistema de caché y mejoró un poco, pero sigue siendo lento en horas punta. ¿Qué más puedo hacer?",
+                "timestamp": "2023-06-05T11:40:30Z"
+            },
+            {
+                "type": "admin",
+                "message": "Puedes intentar optimizar el código del bot para reducir el tiempo de ejecución de las tareas más pesadas, como el procesamiento de datos en tiempo real.",
+                "timestamp": "2023-06-05T11:42:15Z",
+                "adminName": "Carlos Gómez"
+            },
+            {
+                "type": "user",
+                "message": "Voy a revisar el código. Gracias por tu ayuda.",
+                "timestamp": "2023-06-05T11:45:50Z"
+            },
+            {
+                "type": "admin",
+                "message": "¡De nada! No dudes en contactarme si necesitas más asistencia.",
+                "timestamp": "2023-06-05T11:47:00Z",
+                "adminName": "Carlos Gómez"
+            }
+        ]
+    }
+]

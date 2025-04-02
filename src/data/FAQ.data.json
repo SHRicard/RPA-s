@@ -1,0 +1,92 @@
+[
+    {
+        "id": "faq_001",
+        "admin": {
+            "id": "5f8d3b7a2e4c1a0d6e7f8g9",
+            "name": "Ricardo Méndez"
+        },
+        "question": "¿Cómo puedo crear un bot para responder mensajes en WhatsApp?",
+        "answer": "Para crear un bot en WhatsApp, puedes utilizar la API de WhatsApp Business y una plataforma como Node.js con la librería 'whatsapp-web.js'. También puedes usar herramientas de automatización como ManyChat o Twilio."
+    },
+    {
+        "id": "faq_002",
+        "admin": {
+            "id": "6g9e4c8b3f2a1d0e5f6g7h8",
+            "name": "Sofía Carrasco"
+        },
+        "question": "¿Qué lenguajes de programación son los mejores para desarrollar un bot?",
+        "answer": "Los lenguajes más utilizados para desarrollar bots de automatización son Python, JavaScript (Node.js), y Go. Python es ideal para inteligencia artificial, mientras que Node.js es excelente para integraciones en tiempo real."
+    },
+    {
+        "id": "faq_003",
+        "admin": {
+            "id": "7h0f5d9c4e3b2a1f0g1h2i3",
+            "name": "Diego Pérez"
+        },
+        "question": "¿Es posible conectar mi bot con una base de datos?",
+        "answer": "Sí, puedes conectar tu bot a una base de datos utilizando MySQL, PostgreSQL o MongoDB. Esto permite almacenar información de usuarios y mejorar la personalización del bot."
+    },
+    {
+        "id": "faq_004",
+        "admin": {
+            "id": "5f8d3b7a2e4c1a0d6e7f8g9",
+            "name": "Ricardo Méndez"
+        },
+        "question": "¿Cómo puedo integrar mi bot con Telegram?",
+        "answer": "Para integrar un bot con Telegram, necesitas crear un bot en BotFather y obtener un token de API. Luego, puedes usar la librería 'node-telegram-bot-api' para gestionar los mensajes y comandos."
+    },
+    {
+        "id": "faq_005",
+        "admin": {
+            "id": "6g9e4c8b3f2a1d0e5f6g7h8",
+            "name": "Sofía Carrasco"
+        },
+        "question": "¿Puedo automatizar respuestas en Facebook Messenger?",
+        "answer": "Sí, puedes usar la API de Messenger de Facebook para crear un chatbot que responda automáticamente a los mensajes de los usuarios. También puedes usar plataformas como Chatfuel o ManyChat para simplificar el proceso."
+    },
+    {
+        "id": "faq_006",
+        "admin": {
+            "id": "7h0f5d9c4e3b2a1f0g1h2i3",
+            "name": "Diego Pérez"
+        },
+        "question": "¿Cómo hacer que mi bot entienda lenguaje natural?",
+        "answer": "Para mejorar la comprensión del lenguaje natural en tu bot, puedes usar NLP con herramientas como Dialogflow, IBM Watson o la librería 'spaCy' en Python. Esto permite interpretar preguntas y responder de manera más humana."
+    },
+    {
+        "id": "faq_007",
+        "admin": {
+            "id": "5f8d3b7a2e4c1a0d6e7f8g9",
+            "name": "Ricardo Méndez"
+        },
+        "question": "¿Es posible programar un bot para agendar citas automáticamente?",
+        "answer": "Sí, puedes integrar tu bot con Google Calendar o Microsoft Outlook mediante sus APIs para permitir que los usuarios agenden citas automáticamente según disponibilidad."
+    },
+    {
+        "id": "faq_008",
+        "admin": {
+            "id": "6g9e4c8b3f2a1d0e5f6g7h8",
+            "name": "Sofía Carrasco"
+        },
+        "question": "¿Qué necesito para desplegar un bot en producción?",
+        "answer": "Para desplegar un bot en producción necesitas un servidor (Heroku, AWS, DigitalOcean), una base de datos si es necesario, un dominio para acceder al bot, y asegurar la seguridad con HTTPS y autenticación de usuarios."
+    },
+    {
+        "id": "faq_009",
+        "admin": {
+            "id": "7h0f5d9c4e3b2a1f0g1h2i3",
+            "name": "Diego Pérez"
+        },
+        "question": "¿Cómo puedo hacer que mi bot interactúe con una API externa?",
+        "answer": "Puedes usar librerías como 'axios' en JavaScript o 'requests' en Python para hacer llamadas HTTP a APIs externas y recibir información en formato JSON para responder a los usuarios de manera dinámica."
+    },
+    {
+        "id": "faq_010",
+        "admin": {
+            "id": "5f8d3b7a2e4c1a0d6e7f8g9",
+            "name": "Ricardo Méndez"
+        },
+        "question": "¿Cómo puedo probar mi bot antes de lanzarlo?",
+        "answer": "Puedes probar tu bot en un entorno local utilizando herramientas como Postman para enviar solicitudes API o emuladores de chatbot como Botium para realizar pruebas automatizadas."
+    }
+]

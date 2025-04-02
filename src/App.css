@@ -1,0 +1,122 @@
+#root {
+  max-width: 1280px;
+  text-align: center;
+}
+.App {
+  color: white;
+  min-width: 100vw;
+}
+.Landing {
+  background-image: url("../public/LANDING.png");
+  background-size: cover;
+  background-position: center;
+  /*  position: absolute; */
+}
+/* .Landing::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+} */
+/* .hero-text {
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  position: absolute; 
+} */
+.Signin {
+  background-image: url("../public/INICIAR_SESION.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+.Signin::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+.Signup .container-fluid {
+  position: relative;
+  z-index: 2;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding-left: 0;
+  padding-right: 0;
+}
+.Signup {
+  background-image: url("../public/REGISTER_SESION.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+.Signup::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+.Signin .container-fluid {
+  position: relative;
+  z-index: 2;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding-left: 0;
+  padding-right: 0;
+}
+.Layout {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.Layout .main-container {
+  display: fixed;
+  flex: 1;
+  margin-top: 60px;
+}
+
+.Layout .content {
+  flex: 1;
+  padding: 20px;
+}
+
+.Footer {
+  height: 130px;
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.Layout .footer-container {
+  width: 100%;
+  height: 130px; /* Ajusta según la altura del Footer */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+}

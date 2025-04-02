@@ -1,0 +1,46 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.babelrc
+
+# Directorios de construcción
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# Configuración del entorno
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Archivos de bases de datos locales
+*.sqlite
+*.sqlite3
+/data/db
+
+# Archivos del editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Caché y dependencias específicas de OS
+.DS_Store
+Thumbs.db
+
+# Meteor (si aún tienes algo de la migración)
+.meteor/local/
