@@ -24,6 +24,8 @@ import { ModalCreate } from "./modalCreate/inde"
 import { BotStatusCard } from "./botStatusCard"
 import { ModalEditUser } from "./modalEditUser"
 import { TableSecurity } from "./tableSecurity"
+import { ModalErrorShutdown } from "./ModalErrorShutdown"
+import { DeleteBotModal } from "./deleteModalBots"
 
 export {
     CustomInput,
@@ -51,5 +53,7 @@ export {
     ModalCreate,
     BotStatusCard,
     ModalEditUser,
-    TableSecurity
+    TableSecurity,
+    ModalErrorShutdown,
+    DeleteBotModal
 }

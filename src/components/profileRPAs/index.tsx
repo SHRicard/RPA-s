@@ -3,7 +3,7 @@ import { CContainer, CRow, CCol, CImage, CCard, CCardBody, CCardHeader, CAlert }
 import { theme } from "../../theme";
 import BOT from "../../../public/BOTS_2.png";
 import { BiEdit } from "react-icons/bi";
-import { BotStatusCard, BtnPrimary, CustomInput, PerformanceCard } from "../../ui";
+import { BotStatusCard, CustomInput, } from "../../ui";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 
@@ -39,7 +39,7 @@ interface IBots {
 }
 
 export const ProfileRPAs: React.FC = () => {
-    const { register, handleSubmit, setValue, formState: { errors } } = useForm();
+    const { register, setValue, formState: { errors } } = useForm();
 
     const [bot, setBot] = useState<IBots | null>(null)
 

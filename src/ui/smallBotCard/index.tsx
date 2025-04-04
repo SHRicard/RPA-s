@@ -4,6 +4,9 @@ import { theme } from "../../theme";
 import { BtnPrimary } from "../btnPrimary";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import { ModalErrorShutdown } from "../ModalErrorShutdown";
+import { useState } from "react";
+import { DeleteBotModal } from "../deleteModalBots";
 
 interface Process {
     name: string;
@@ -39,19 +42,33 @@ export const SmallBotCard = ({
 }: IBot) => {
     const { id, name, status, createdAt, lastUpdate } = bot;
     const navigate = useNavigate();
+    const [showErrorModal, setShowErrorModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     const handleProfileRPAs = (id: string) => {
         navigate(`/profile-rpas-user/${id}`);
     };
+
     const deleteRPAs = (id: string) => {
         const storedBots = localStorage.getItem("bots");
         if (!storedBots) return;
-        let bots = JSON.parse(storedBots);
-        bots = bots.filter((bot: { id: string }) => bot.id !== id);
-        localStorage.setItem("bots", JSON.stringify(bots));
-        setRefresh(!refresh)
+
+        const bots = JSON.parse(storedBots);
+
+        const selectedBot = bots.find((bot: { id: string; status: string }) => bot.id === id);
+        if (!selectedBot) return;
+
+        if (selectedBot.status === "active") {
+            setShowErrorModal(true);
+            return;
+        }
+        setShowDeleteModal(true)
+
     };
 
+    const closeDeleteRPA = () => {
+        setShowDeleteModal(false)
+    }
 
     return (
         <CCard className="m-2">
@@ -102,12 +119,12 @@ export const SmallBotCard = ({
                     {name}
                 </CCardTitle>
 
-                <CCardText className="small">
-                    <div className="d-flex justify-content-between mb-2">
+                <CCardText className="small text-center">
+                    <div className="d-flex flex-column align-items-center mb-2">
                         <span className="fw-bold">Creado:</span>
                         <span className="text-muted">{createdAt}</span>
                     </div>
-                    <div className="d-flex justify-content-between">
+                    <div className="d-flex flex-column align-items-center">
                         <span className="fw-bold">Actualizado:</span>
                         <span className="text-muted">{lastUpdate}</span>
                     </div>
@@ -122,6 +139,16 @@ export const SmallBotCard = ({
                     />
                 </div>
             </CCardBody>
+            <ModalErrorShutdown show={showErrorModal} setShow={setShowErrorModal} robotName={name} />
+            <DeleteBotModal
+                show={showDeleteModal}
+                botId={id}
+                onClose={closeDeleteRPA}
+                botName={name}
+                refresh={refresh}
+                setRefresh={setRefresh}
+
+            />
         </CCard>
     );
 };

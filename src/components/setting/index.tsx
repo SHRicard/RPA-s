@@ -28,7 +28,6 @@ import { theme } from '../../theme';
 import { FaKey, FaTrashAlt, FaEye, FaEyeSlash, FaCopy, FaShieldAlt, FaHistory } from 'react-icons/fa';
 
 const INTEGRATION_OPTIONS = [
-    // Agrupadas por categorías
     {
         category: "Identity Providers",
         options: [
@@ -51,7 +50,6 @@ const INTEGRATION_OPTIONS = [
             "JumpCloud"
         ]
     },
-    // ... otras categorías
 ];
 
 interface ApiKey {
@@ -62,6 +60,7 @@ interface ApiKey {
     lastUsed?: string;
     description?: string;
     isActive: boolean;
+    showKey?: boolean;
 }
 
 export const SettingUser = () => {
@@ -76,19 +75,18 @@ export const SettingUser = () => {
     const [keyToDelete, setKeyToDelete] = useState<string | null>(null);
     const [filter, setFilter] = useState<string>('all');
 
-    // Cargar API Keys guardadas
     useEffect(() => {
         setLoading(true);
         const storedKeys = localStorage.getItem('apiKeys');
         if (storedKeys) {
             try {
                 const parsedKeys = JSON.parse(storedKeys);
-                // Migración para keys antiguas
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 const migratedKeys = parsedKeys.map((key: any) => ({
                     ...key,
                     id: key.id || generateId(),
-                    isActive: key.isActive !== false
+                    isActive: key.isActive !== false,
+                    showKey: false
                 }));
                 setSavedKeys(migratedKeys);
             } catch (e) {
@@ -98,7 +96,6 @@ export const SettingUser = () => {
         setLoading(false);
     }, []);
 
-    // Guardar en localStorage
     useEffect(() => {
         if (savedKeys.length > 0) {
             localStorage.setItem('apiKeys', JSON.stringify(savedKeys));
@@ -123,7 +120,8 @@ export const SettingUser = () => {
             key: apiKey,
             description: keyDescription,
             createdAt: new Date().toISOString(),
-            isActive: true
+            isActive: true,
+            showKey: false
         };
 
         setSavedKeys([...savedKeys, newKey]);
@@ -160,6 +158,12 @@ export const SettingUser = () => {
     const toggleKeyStatus = (id: string) => {
         setSavedKeys(savedKeys.map(key =>
             key.id === id ? { ...key, isActive: !key.isActive } : key
+        ));
+    };
+
+    const toggleShowKey = (id: string) => {
+        setSavedKeys(savedKeys.map(key =>
+            key.id === id ? { ...key, showKey: !key.showKey } : key
         ));
     };
 
@@ -340,6 +344,26 @@ export const SettingUser = () => {
                                         </div>
 
                                         <div className="d-flex align-items-center">
+                                            <div className="me-2" style={{ width: '150px' }}>
+                                                <CFormInput
+                                                    type={item.showKey ? "text" : "password"}
+                                                    value={item.key}
+                                                    readOnly
+                                                    className="bg-light"
+                                                />
+                                            </div>
+
+                                            <CTooltip content={item.showKey ? "Ocultar clave" : "Mostrar clave"}>
+                                                <CButton
+                                                    color="secondary"
+                                                    size="sm"
+                                                    className="me-2"
+                                                    onClick={() => toggleShowKey(item.id)}
+                                                >
+                                                    {item.showKey ? <FaEyeSlash /> : <FaEye />}
+                                                </CButton>
+                                            </CTooltip>
+
                                             <CTooltip content="Copiar clave">
                                                 <CButton
                                                     color="light"
@@ -380,8 +404,9 @@ export const SettingUser = () => {
                 </CCardBody>
             </CCard>
 
-            {/* Modal de confirmación */}
-            <CModal visible={showConfirmModal} onClose={() => setShowConfirmModal(false)}>
+            <CModal visible={showConfirmModal} onClose={() => setShowConfirmModal(false)} backdrop="static"
+                alignment="center"
+                size="lg">
                 <CModalHeader closeButton>
                     <CModalTitle>Confirmar Eliminación</CModalTitle>
                 </CModalHeader>
