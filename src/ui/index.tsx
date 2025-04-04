@@ -18,11 +18,12 @@ import { ViewResourcesModal } from "./viewResourcesModal"
 import { AddResourcesModal } from "./addResourcesModal"
 import { ChatIA } from "./chatIA"
 import { ResponseModal } from "./reponseModal"
-import { EditModal } from "./editModal"
 import { SmallBotCard } from "./smallBotCard"
 import { PerformanceCard } from "./PerformanceCard"
 import { ModalCreate } from "./modalCreate/inde"
 import { BotStatusCard } from "./botStatusCard"
+import { ModalEditUser } from "./modalEditUser"
+import { TableSecurity } from "./tableSecurity"
 
 export {
     CustomInput,
@@ -45,9 +46,10 @@ export {
     AddResourcesModal,
     ChatIA,
     ResponseModal,
-    EditModal,
     SmallBotCard,
     PerformanceCard,
     ModalCreate,
-    BotStatusCard
+    BotStatusCard,
+    ModalEditUser,
+    TableSecurity
 }

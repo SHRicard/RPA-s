@@ -35,7 +35,7 @@ export const PopupLoading: React.FC<PopupLoadingProps> = ({ showModal, closeLoad
     };
 
     return (
-        <CModal visible={showModal} onClose={handleClose} alignment="center">
+        <CModal visible={showModal} onClose={handleClose} alignment="center" backdrop="static">
             <CModalBody>
                 {loading ? (
                     <CRow>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CContainer, CRow, CCol } from '@coreui/react';
-import { CustomSearch, BtnPrimary, CustomTable, CustomPagination, PopupLoading, EditModal } from "../../../ui";
-import users from "../../../data/users.data.json"
+import { CustomSearch, BtnPrimary, CustomPagination, PopupLoading, TableSecurity } from "../../../ui";
+import users from "../../../data/users.data.json";
 
 interface User {
     _id: string;
@@ -20,47 +20,42 @@ interface User {
 }
 
 const ITEMS_PER_PAGE = 10;
+
 export const SecurityAdmin: React.FC = () => {
     const [page, setPage] = useState(1);
     const [searchQuery, setSearchQuery] = useState("");
     const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
-    const [editFilterUser, setEditFilterUser] = useState<User[]>([]);
-    const [refresh, setRefresh] = useState<boolean>(false);
+    const [refresh, setRefresh] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [editModal, setEditModal] = useState(false);
 
-    const loadUsers = () => {
-        const storedUsers: User[] = JSON.parse(localStorage.getItem('editUser') || '[]');
-        const allUsers = [...users];
-        if (storedUsers.length > 0) {
-            storedUsers.forEach(storedUser => {
-                const index = allUsers.findIndex(u => u._id === storedUser._id);
-                if (index !== -1) {
-                    allUsers[index] = { ...allUsers[index], ...storedUser };
-                }
-            });
+    useEffect(() => {
+        const storedUsers = JSON.parse(localStorage.getItem("users") || "[]");
+
+        if (!Array.isArray(storedUsers) || storedUsers.length === 0) {
+            localStorage.removeItem("users");
+            localStorage.setItem("users", JSON.stringify(users));
         }
-        return allUsers;
+    }, []);
+
+    const getUsersFromLocalStorage = (): User[] => {
+        return JSON.parse(localStorage.getItem("users") || "[]");
     };
 
     const isRefresh = () => {
         setRefresh(!refresh);
         setSearchQuery("");
-    }
-    // solo role User
-    useEffect(() => {
-        const allUsers = loadUsers();
+        setPage(1);
+    };
 
-        if (searchQuery.trim() === "") {
-            setFilteredUsers(allUsers.filter(user => user.role === "user"));
-        } else {
-            setFilteredUsers(
-                allUsers.filter(
-                    user => user.role === "user" &&
-                        user.name.toLowerCase().includes(searchQuery.toLowerCase())
-                )
-            );
-        }
+    useEffect(() => {
+        const allUsers = getUsersFromLocalStorage();
+
+        const filtered = allUsers.filter(user =>
+            user.role === "user" &&
+            user.name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+
+        setFilteredUsers(filtered);
     }, [searchQuery, refresh]);
 
     const totalPages = Math.ceil(filteredUsers.length / ITEMS_PER_PAGE);
@@ -81,36 +76,20 @@ export const SecurityAdmin: React.FC = () => {
     const deleteUser = (userId: string) => {
         handleOpenModal();
         setTimeout(() => {
-            const updatedUsers = filteredUsers.filter(user => user._id !== userId);
-            setFilteredUsers(updatedUsers);
+            const allUsers = getUsersFromLocalStorage();
+            const updatedUsers = allUsers.filter(user => user._id !== userId);
+            localStorage.setItem("users", JSON.stringify(updatedUsers));
+            const filtered = updatedUsers.filter(user =>
+                user.role === "user" &&
+                user.name.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+            setFilteredUsers(filtered);
         }, 2000);
     };
 
-    const handleEditModal = (status: boolean) => {
-        setEditModal(status);
-        if (!status) {
-            setRefresh(prev => !prev);
-        }
-    };
 
-    const handleEditById = (userId: string) => {
-        const userToEdit = filteredUsers.filter(user => user._id === userId);
-        setEditFilterUser(userToEdit);
-    };
-
-    const headerLarge = [
-        "Avatar",
-        "Nombre",
-        "Email",
-        "Estado",
-        "Acciones"
-    ];
-
-    const headerSmall = [
-        "Nombre",
-        "Estado",
-        "Acciones"
-    ];
+    const headerLarge = ["Avatar", "Nombre", "Email", "Estado", "Acciones"];
+    const headerSmall = ["Nombre", "Estado", "Acciones"];
 
     return (
         <CContainer>
@@ -120,21 +99,19 @@ export const SecurityAdmin: React.FC = () => {
                         <CustomSearch onSearch={setSearchQuery} refresh={refresh} />
                     </CCol>
                     <CCol md="auto" lg="auto" className="py-2">
-                        <BtnPrimary onClick={isRefresh} type="button" color="primary" label="Borrar Busqueda" />
+                        <BtnPrimary onClick={isRefresh} type="button" color="primary" label="Borrar Búsqueda" />
                     </CCol>
                 </CRow>
 
                 <CRow className="d-flex justify-content-center align-items-center py-5">
                     <CCol md={10}>
-                        <CustomTable
-                            handleEditModal={handleEditModal}
-                            handleEditById={handleEditById}
+                        <TableSecurity
+                            isRefresh={isRefresh}
                             data={paginatedUsers}
                             onDelete={deleteUser}
                             toolTip={["Borrar Usuario", "Editar Usuario"]}
                             headerLarge={headerLarge}
                             headerSmall={headerSmall}
-                            type="seguridad"
                         />
                     </CCol>
                     <CCol md={10} className="d-flex justify-content-center">
@@ -148,13 +125,8 @@ export const SecurityAdmin: React.FC = () => {
                 <PopupLoading
                     showModal={loading}
                     closeLoading={handleCloseModal}
-                    message={"Enviando Contraseña..."}
-                    subMessage={"Se ha enviado la contraseña a su correo."}
-                />
-                <EditModal
-                    show={editModal}
-                    onClose={handleEditModal}
-                    users={editFilterUser}
+                    message={"Borrando Usuario..."}
+                    subMessage={"Se ha borrado el usuario"}
                 />
             </CCol>
         </CContainer>

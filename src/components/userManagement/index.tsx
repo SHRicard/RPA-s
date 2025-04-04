@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { CContainer, CRow, CCol } from '@coreui/react';
+import { CContainer, CRow, CCol } from "@coreui/react";
 import { BtnPrimary, CustomPagination, CustomSearch, CustomTable, PopupLoading } from "../../ui";
-import users from "../../data/users.data.json"
+import usersJson from "../../data/users.data.json";
 
 interface User {
     _id: string;
@@ -27,24 +27,26 @@ export const UserManagement: React.FC = () => {
     const [refresh, setRefresh] = useState<boolean>(false);
     const [loading, setLoading] = useState(false);
 
-
-    const isRefresh = () => {
-        setRefresh(!refresh)
-        setSearchQuery("")
-    }
+    useEffect(() => {
+        const storedUsers = localStorage.getItem("users");
+        if (!storedUsers) {
+            localStorage.setItem("users", JSON.stringify(usersJson));
+        }
+    }, []);
 
     useEffect(() => {
+        const storedUsers = JSON.parse(localStorage.getItem("users") || "[]");
         if (searchQuery.trim() === "") {
-            setFilteredUsers(users.filter(user => user.role === "user"));
+            setFilteredUsers(storedUsers.filter((user: User) => user.role === "user"));
         } else {
             setFilteredUsers(
-                users.filter(
-                    user => user.role === "user" &&
-                        user.name.toLowerCase().includes(searchQuery.toLowerCase())
+                storedUsers.filter((user: User) =>
+                    user.role === "user" &&
+                    user.name.toLowerCase().includes(searchQuery.toLowerCase())
                 )
             );
         }
-    }, [searchQuery]);
+    }, [searchQuery, refresh]);
 
     const totalPages = Math.ceil(filteredUsers.length / ITEMS_PER_PAGE);
 
@@ -64,25 +66,23 @@ export const UserManagement: React.FC = () => {
     const deleteUser = (userId: string) => {
         handleOpenModal();
         setTimeout(() => {
-            const updatedUsers = filteredUsers.filter(user => user._id !== userId);
-            setFilteredUsers(updatedUsers);
+            const storedUsers = JSON.parse(localStorage.getItem("users") || "[]");
+            const updatedUsers = storedUsers.filter((user: User) => user._id !== userId);
+            localStorage.setItem("users", JSON.stringify(updatedUsers));
+
+            setRefresh(!refresh);
+            setSearchQuery("");
         }, 2000);
     };
 
+    const isRefresh = () => {
+        setRefresh(!refresh);
+        setSearchQuery("");
+    };
 
+    const headerLarge = ["Avatar", "Nombre", "Email", "Telefono", "Acciones"];
+    const headerSmall = ["Nombre", "Telefono", "Acciones"];
 
-    const headerLarge = [
-        "Avatar",
-        "Nombre",
-        "Email",
-        "Telefono",
-        "Acciones"
-    ]
-    const headerSmall = [
-        "Nombre",
-        "Telefono",
-        "Acciones"
-    ]
     return (
         <CContainer>
             <CRow className="d-flex justify-content-center">
@@ -97,6 +97,7 @@ export const UserManagement: React.FC = () => {
             <CRow className="d-flex justify-content-center align-items-center py-5">
                 <CCol md={10}>
                     <CustomTable
+                        isRefresh={isRefresh}
                         data={paginatedUsers}
                         onDelete={deleteUser}
                         type="usuario"
@@ -106,18 +107,21 @@ export const UserManagement: React.FC = () => {
                     />
                 </CCol>
                 <CCol md={10} className="d-flex justify-content-center">
-                    <CustomPagination
-                        currentPage={page}
-                        totalPages={totalPages}
-                        onPageChange={setPage}
-                    />
+                    {
+                        paginatedUsers.length === 0 ? <></> : <CustomPagination
+                            currentPage={page}
+                            totalPages={totalPages}
+                            onPageChange={setPage}
+                        />
+                    }
+
                 </CCol>
             </CRow>
             <PopupLoading
                 showModal={loading}
                 closeLoading={handleCloseModal}
-                message={"Enviando Contraseña..."}
-                subMessage={"Se ha enviado la contraseña a su correo."}
+                message={"Eliminando Usuario..."}
+                subMessage={"Se ha eliminado el usuario."}
             />
         </CContainer>
     );
