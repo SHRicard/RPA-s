@@ -34,6 +34,8 @@ export const saveAuthData = (
 // Eliminar usuario de localStorage (Logout)
 export const removeAuthData = () => {
     localStorage.removeItem("authData");
+    localStorage.removeItem("bots");
+    localStorage.removeItem("users");
 };
 
 // Verificar si hay usuario autenticado
