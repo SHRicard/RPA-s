@@ -13,6 +13,7 @@ import { Landing } from "./landing"
 import { SecurityAdmin } from "./security"
 import { ProfileRPAs } from "./profileRPAs"
 import { SettingUser } from "./setting"
+import { FaqAccordionList } from "./FaqAccordionList"
 
 
 export {
@@ -32,5 +33,6 @@ export {
     Landing,
     SecurityAdmin,
     ProfileRPAs,
-    SettingUser
+    SettingUser,
+    FaqAccordionList
 }

@@ -15,7 +15,8 @@ import {
     Landing,
     SecurityAdmin,
     ProfileRPAs,
-    SettingUser
+    SettingUser,
+    FaqAccordionList
 } from "../components/index";
 import '../App.css'
 import { AppLayout } from "../Layout";
@@ -86,6 +87,7 @@ export const AppRouter = () => {
                     <Route path="/support-user" element={<SupportUser />} />
                     <Route path="/profile-rpas-user/:id" element={<ProfileRPAs />} />
                     <Route path="/settings-user" element={<SettingUser />} />
+                    <Route path="/faq-user" element={<FaqAccordionList />} />
 
 
                 </Route>

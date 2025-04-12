@@ -1,16 +1,16 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { CRow, CCol, CCard, CCardHeader, CBadge, CCardBody, CCardFooter, CInputGroup, CFormInput, CButton } from "@coreui/react";
 import { FaPaperPlane, FaUser, FaRobot } from "react-icons/fa";
 import { BsChatSquareTextFill } from "react-icons/bs";
-import { getAIResponse } from "../../utils";
 import { theme } from '../../theme';
 import { useRefresh } from '../../store/useRefresh';
+import axios from 'axios';
 
 export const ChatIA = () => {
     const { triggerRefresh } = useRefresh();
     const [messages, setMessages] = useState([
         {
-            text: "¡Hola! Soy tu asistente virtual. ¿En qué puedo ayudarte hoy?",
+            text: "¡Hola! Soy tu asistente RPA´s. ¿En qué puedo ayudarte hoy?",
             sender: 'ai',
             timestamp: new Date()
         }
@@ -22,7 +22,6 @@ export const ChatIA = () => {
     const handleSendMessage = async () => {
         if (!newMessage.trim() || isLoading) return;
 
-        // Agregar mensaje del usuario
         const userMessage = {
             text: newMessage,
             sender: 'user',
@@ -32,20 +31,35 @@ export const ChatIA = () => {
         setNewMessage('');
         setIsLoading(true);
 
-        // Simular delay de respuesta
-        await new Promise(resolve => setTimeout(resolve, 800));
+        try {
+            const conversationPayload = {
+                data: messages
+                    .filter(msg => msg.sender !== 'system')
+                    .map(msg => ({
+                        type: msg.sender === 'user' ? 'pregunta' : 'response',
+                        content: msg.text
+                    }))
+                    .concat({ type: 'pregunta', content: newMessage })
+            };
+            const { data } = await axios.post('http://34.238.122.213:1337/api/open-ai/49', conversationPayload);
+            const lastResponse = data?.autos?.[0]?.data?.[0]?.content ?? "Lo siento, no encontré una respuesta válida.";
+            const aiMessage = {
+                text: lastResponse,
+                sender: 'ai',
+                timestamp: new Date()
+            };
 
-        // Obtener respuesta simulada
-        const aiResponse = getAIResponse(newMessage);
-
-        // Agregar respuesta al chat
-        const aiMessage = {
-            text: aiResponse,
-            sender: 'ai',
-            timestamp: new Date()
-        };
-        setMessages(prev => [...prev, aiMessage]);
-        setIsLoading(false);
+            setMessages(prev => [...prev, aiMessage]);
+        } catch (error) {
+            console.error("Error al obtener la respuesta de la IA:", error);
+            setMessages(prev => [...prev, {
+                text: "Lo siento, hubo un problema al conectar con el asistente.",
+                sender: 'ai',
+                timestamp: new Date()
+            }]);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const handleKeyPress = (e: { key: string; }) => {
@@ -76,10 +90,9 @@ export const ChatIA = () => {
             return `${category}: ${shortMessage}`;
         };
 
-        // Guardar la conversación actual
         const chatData = {
             id: Date.now(),
-            title: generateChatTitle(),  // Usamos la función generadora
+            title: generateChatTitle(),
             active: false,
             status: "solucionado",
             user: {
@@ -96,7 +109,6 @@ export const ChatIA = () => {
             }))
         };
 
-        // Guardar en localStorage
         const savedChatsStr = localStorage.getItem('chatHistories');
         const savedChats = savedChatsStr ? JSON.parse(savedChatsStr) : [];
         savedChats.push(chatData);
@@ -107,10 +119,17 @@ export const ChatIA = () => {
             sender: 'ai',
             timestamp: new Date()
         }]);
-        triggerRefresh()
+        triggerRefresh();
         setNewMessage('');
         setIsLoading(false);
     };
+
+    // Scroll hacia el último mensaje cuando se actualiza la lista de mensajes
+    useEffect(() => {
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [messages]);
 
     return (
         <CRow className="justify-content-center ">
@@ -125,7 +144,7 @@ export const ChatIA = () => {
                     >
                         <div className="d-flex align-items-center">
                             <BsChatSquareTextFill className="me-2" />
-                            <strong>Asistente Virtual</strong>
+                            <strong>Asistente Virtual RPA´s (v1.0.2)</strong>
                         </div>
                         <CBadge color="light" shape="rounded-pill">
                             <strong style={{ color: '#321fdb' }}>{messages.length} mensajes</strong>
@@ -134,7 +153,7 @@ export const ChatIA = () => {
 
                     <CCardBody
                         style={{
-                            height: '350px',
+                            height: '400px',
                             overflowY: 'auto',
                             padding: '20px',
                             backgroundColor: '#f8f9fa',
@@ -254,5 +273,5 @@ export const ChatIA = () => {
                 </CCard>
             </CCol>
         </CRow>
-    )
+    );
 }

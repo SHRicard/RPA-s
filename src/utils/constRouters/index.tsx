@@ -1,4 +1,4 @@
-import { cilGroup, cilHeadphones, cilShieldAlt, cibAndroidAlt, cilSettings } from '@coreui/icons';
+import { cilGroup, cilHeadphones, cilShieldAlt, cibAndroidAlt, cilSettings, cilInfo } from '@coreui/icons';
 
 export const dashboard = [
     {
@@ -22,9 +22,9 @@ export const allRouter = [
     },
     {
         role: "user",
-        rotuer: ["/dashboard-user", "/support-user", "/settings-user"],
-        text: ["RPA’s", "Soporte", "Configuración"],
-        icons: [cibAndroidAlt, cilHeadphones, cilSettings]
+        rotuer: ["/dashboard-user", "/faq-user", "/settings-user", "/support-user"],
+        text: ["RPA’s", "Pr. Frecuentes", "Configuración", "Soporte IA"],
+        icons: [cibAndroidAlt, cilInfo, cilSettings, cibAndroidAlt]
     }
 ]
 
