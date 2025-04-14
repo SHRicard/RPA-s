@@ -237,7 +237,7 @@ export const Profile: React.FC = () => {
                                             id="genero"
                                             register={register}
                                             validationRules={{ required: true }}
-                                            value={dataUser?.genero || ''}
+                                            value={dataUser?.genero ?? ''}
                                             options={[
                                                 "Masculino",
                                                 "Femenino",
@@ -256,7 +256,7 @@ export const Profile: React.FC = () => {
                                             validationRules={{ required: true }}
                                             options={countries}
                                             required={false}
-                                            value={dataUser?.country || ''}
+                                            value={dataUser?.country ?? ''}
                                         />
                                     </div>
                                     <div className="text-start">

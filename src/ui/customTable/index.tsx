@@ -27,7 +27,6 @@ import { CustomSelect } from '../customSelect';
 import { BtnPrimary } from '../btnPrimary';
 import countries from "../../data/pais.data.json"
 import { PopupLoading } from '../popupLoading';
-import { useRefresh } from '../../store/useRefresh';
 
 
 interface User {

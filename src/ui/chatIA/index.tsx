@@ -17,7 +17,8 @@ export const ChatIA = () => {
     ]);
     const [newMessage, setNewMessage] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const messagesEndRef = useRef(null);
+    const messagesEndRef = useRef<HTMLDivElement | null>(null);
+
 
     const handleSendMessage = async () => {
         if (!newMessage.trim() || isLoading) return;

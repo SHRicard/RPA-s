@@ -232,25 +232,24 @@ export const SettingUser = () => {
                                         </CFormSelect>
                                     </CCol>
 
-                                    <CCol md={6}>
+                                    <CCol md={6} className='d-flex justify-content-center align-items-center m-0'>
                                         <CFormInput
                                             type={showKey ? "text" : "password"}
                                             value={apiKey}
                                             onChange={(e) => setApiKey(e.target.value)}
                                             placeholder="Ingrese su API Key"
-                                            addonText={
-                                                <CTooltip content={showKey ? "Ocultar clave" : "Mostrar clave"}>
-                                                    <CButton
-                                                        type="button"
-                                                        color="secondary"
-                                                        size="sm"
-                                                        onClick={() => setShowKey(!showKey)}
-                                                    >
-                                                        {showKey ? <FaEyeSlash /> : <FaEye />}
-                                                    </CButton>
-                                                </CTooltip>
-                                            }
+
                                         />
+                                        <CTooltip content={showKey ? "Ocultar clave" : "Mostrar clave"}>
+                                            <CButton
+                                                type="button"
+                                                color="secondary"
+                                                size="sm"
+                                                onClick={() => setShowKey(!showKey)}
+                                            >
+                                                {showKey ? <FaEyeSlash /> : <FaEye />}
+                                            </CButton>
+                                        </CTooltip>
                                     </CCol>
 
                                     <CCol md={12}>
