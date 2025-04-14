@@ -1,4 +1,3 @@
-import React from 'react';
 import { CButton } from '@coreui/react';
 import { theme } from '../../theme';
 import { IoMdAdd } from 'react-icons/io';

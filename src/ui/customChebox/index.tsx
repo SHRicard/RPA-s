@@ -1,4 +1,3 @@
-import React from 'react';
 import { CFormCheck, CFormLabel } from '@coreui/react';
 import { theme } from '../../theme';
 

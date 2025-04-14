@@ -1,4 +1,3 @@
-import React from 'react';
 import { CRow, CCol, CImage, CContainer } from '@coreui/react';
 import { BtnPrimary } from '../../ui';
 import { theme } from '../../theme';

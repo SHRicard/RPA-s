@@ -347,7 +347,7 @@ export const ProfileRPAs: React.FC = () => {
                     </CCardHeader>
                 </CCol>
                 <CCol lg={12}>
-                    <BotStatusCard bot={bot} />
+                    <BotStatusCard bot={bot!} />
                 </CCol>
 
             </CRow>

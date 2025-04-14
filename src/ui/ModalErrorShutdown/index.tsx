@@ -1,10 +1,8 @@
-import React from 'react';
 import {
     CModal,
     CModalHeader,
     CModalBody,
     CModalFooter,
-    CButton,
     CAlert
 } from '@coreui/react';
 import { MdErrorOutline, MdPowerSettingsNew } from 'react-icons/md';

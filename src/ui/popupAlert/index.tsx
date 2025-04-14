@@ -1,4 +1,3 @@
-import React from 'react';
 import { CModal, CModalHeader, CModalBody, CModalFooter, CButton, } from '@coreui/react';
 import { theme } from '../../theme';
 
