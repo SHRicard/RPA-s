@@ -139,7 +139,7 @@ export const DeleteBotModal: React.FC<DeleteBotModalProps> = ({
                 <div className="text-center mt-3">
                     <div className="text-start mb-3 console-output" style={{
                         maxHeight: '200px',
-                        overflowY: 'auto',
+                        overflowY: "auto" as const,
                         backgroundColor: '#f8f9fa',
                         padding: '10px',
                         borderRadius: '5px',

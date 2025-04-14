@@ -173,7 +173,7 @@ export const BotStatusCard = ({ bot }: BotStatusCardProps) => {
 
     const consoleStyle = {
         maxHeight: '200px',
-        overflowY: 'auto',
+        overflowY: "auto" as const,
         backgroundColor: '#f8f9fa',
         padding: '10px',
         borderRadius: '5px',

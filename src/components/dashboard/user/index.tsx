@@ -3,32 +3,10 @@ import { CAlert, CButton, CCard, CCardBody, CCardHeader, CCol, CContainer, CRow 
 import { BtnPrimary, CustomPagination, CustomSearch, ModalCreate, PerformanceCard, SmallBotCard } from "../../../ui";
 import bots from "../../../data/bots.data.json";
 import { theme } from "../../../theme";
+import { IBots } from "../../../interface";
 
 
-interface Process {
-    name: string;
-    steps: string[];
-    frequency: string;
-    dataTypes: string[];
-    workflow: string[];
-    integrations: string[];
-    automatedActions: string[];
-}
 
-interface IBots {
-    id: string;
-    name: string;
-    type: string;
-    status: string;
-    processes: Process[];
-    version?: string;
-    createdAt?: string;
-    lastUpdate?: string;
-    creator?: string;
-    lastActivity?: string;
-    language?: string;
-    description?: string;
-}
 
 const ITEMS_PER_PAGE = 4;
 

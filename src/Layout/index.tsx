@@ -32,7 +32,7 @@ export const AppLayout = () => {
                         padding: "10px",
                         flex: 1,
                         maxHeight: "100vh",
-                        overflowY: "auto",
+                        overflowY: "auto" as const,
                     }}
                 >
                     <Outlet />

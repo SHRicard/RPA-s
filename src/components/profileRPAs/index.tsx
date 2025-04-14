@@ -6,37 +6,7 @@ import { BiEdit } from "react-icons/bi";
 import { BotStatusCard, CustomInput, } from "../../ui";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
-
-interface IPerformance {
-    title: string;
-    time: number;
-    rate: number;
-}
-interface Process {
-    name: string;
-    steps: string[];
-    frequency: string;
-    dataTypes: string[];
-    workflow: string[];
-    integrations: string[];
-    automatedActions: string[];
-    performance: IPerformance[]
-}
-
-interface IBots {
-    id: string;
-    name: string;
-    type: string;
-    status: string;
-    processes: Process;
-    version?: string;
-    createdAt?: string;
-    lastUpdate?: string;
-    creator?: string;
-    lastActivity?: string;
-    language?: string;
-    description?: string;
-}
+import { IBots } from "../../interface";
 
 export const ProfileRPAs: React.FC = () => {
     const { register, setValue, formState: { errors } } = useForm();

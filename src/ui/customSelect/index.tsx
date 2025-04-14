@@ -72,7 +72,7 @@ export const CustomSelect = ({
                     height: size === "sm" ? "35px" : "40px",
                     fontSize: size === "sm" ? "12px" : "14px",
                     maxHeight: "200px",
-                    overflowY: "auto",
+                    overflowY: "auto" as const,
                 }}
             />
         </div>

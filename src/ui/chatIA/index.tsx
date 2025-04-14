@@ -154,7 +154,7 @@ export const ChatIA = () => {
                     <CCardBody
                         style={{
                             height: '400px',
-                            overflowY: 'auto',
+                            overflowY: "auto" as const,
                             padding: '20px',
                             backgroundColor: '#f8f9fa',
                             scrollBehavior: 'smooth'
