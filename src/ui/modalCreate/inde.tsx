@@ -202,7 +202,7 @@ export const ModalCreate = ({ show, onClose, refresh, setRefresh }: ResponseModa
         }
     });
     const { triggerRefresh } = useRefresh();
-    const [activeKey, setActiveKey] = useState<string | number | undefined>(undefined);
+    const [activeKey] = useState<string | number | undefined>(undefined);
 
     const generateRandomPerformance = () => {
         const performanceTitles = [

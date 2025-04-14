@@ -33,7 +33,7 @@ interface FAQModalProps {
 }
 
 export const ModalEditUser: React.FC<FAQModalProps> = ({ show, onClose, users }) => {
-    const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm();
+    const { register, watch, setValue } = useForm();
     const [disabledFields, setDisabledFields] = useState({
         status: false,
         role: false
