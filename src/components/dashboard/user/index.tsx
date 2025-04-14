@@ -111,7 +111,7 @@ export const DashboardUser: React.FC = () => {
                     <>
                         {paginatedBots.map((bot: IBots) => (
                             <CCol key={bot.id} sm={12} md={6} lg={3} className="py-5">
-                                <SmallBotCard bot={bot} refresh={refresh} setRefresh={setRefresh} />
+                                <SmallBotCard bot={bot!} refresh={refresh} setRefresh={setRefresh} />
                             </CCol>
                         ))}
 

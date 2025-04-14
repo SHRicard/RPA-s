@@ -7,27 +7,28 @@ import { useNavigate } from "react-router-dom";
 import { ModalErrorShutdown } from "../ModalErrorShutdown";
 import { useState } from "react";
 import { DeleteBotModal } from "../deleteModalBots";
+import { IBots } from "../../interface";
 
-interface Process {
-    name: string;
-    steps: string[];
-    frequency: string;
-    dataTypes: string[];
-    workflow: string[];
-    integrations: string[];
-}
+// interface Process {
+//     name: string;
+//     steps: string[];
+//     frequency: string;
+//     dataTypes: string[];
+//     workflow: string[];
+//     integrations: string[];
+// }
 
-interface IBots {
-    id: string;
-    name: string;
-    type: string;
-    status: string;
-    processes: Process;
-    version?: string;
-    createdAt?: string;
-    lastUpdate?: string;
+// interface IBots {
+//     id: string;
+//     name: string;
+//     type: string;
+//     status: string;
+//     processes: Process;
+//     version?: string;
+//     createdAt?: string;
+//     lastUpdate?: string;
 
-}
+// }
 
 interface IBot {
     bot: IBots
