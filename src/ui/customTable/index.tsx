@@ -317,7 +317,7 @@ export const CustomTable = ({
                                         id="genero"
                                         register={register}
                                         validationRules={{ required: true }}
-                                        value={selectedUser?.genero || ''}
+                                        value={selectedUser?.genero ?? ''}
                                         options={[
                                             "Masculino",
                                             "Femenino",
@@ -335,7 +335,7 @@ export const CustomTable = ({
                                         register={register}
                                         validationRules={{ required: true }}
                                         options={countries}
-                                        value={selectedUser?.country || ''}
+                                        value={selectedUser?.country ?? ''}
                                     />
                                 </div>
 
