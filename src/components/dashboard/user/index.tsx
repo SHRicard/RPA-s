@@ -58,6 +58,7 @@ export const DashboardUser: React.FC = () => {
         const storedBots = localStorage.getItem("bots");
         if (storedBots) {
             const bots = JSON.parse(storedBots);
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             setBotsStatus(bots.map((bot: any) => ({
                 id: bot.id,
                 status: bot.status || 'inactive'

@@ -202,7 +202,7 @@ export const ModalCreate = ({ show, onClose, refresh, setRefresh }: ResponseModa
         }
     });
     const { triggerRefresh } = useRefresh();
-    const [activeKey, setActiveKey] = useState<string | null>(null);
+    const [activeKey, setActiveKey] = useState<string | number | undefined>(undefined);
 
     const generateRandomPerformance = () => {
         const performanceTitles = [
@@ -382,7 +382,7 @@ export const ModalCreate = ({ show, onClose, refresh, setRefresh }: ResponseModa
                     </CRow>
 
                     {/* Secciones con checkboxes en acordeón */}
-                    <CAccordion activeItemKey={activeKey} onActiveItemChange={setActiveKey}>
+                    <CAccordion activeItemKey={activeKey} >
                         {/* Procesos involucrados */}
                         <CAccordionItem itemKey="1">
                             <CAccordionHeader>Procesos involucrados *</CAccordionHeader>
