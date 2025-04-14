@@ -238,7 +238,7 @@ export const ModalCreate = ({ show, onClose, refresh, setRefresh }: ResponseModa
     };
 
     const handleCheckboxChange = (field: keyof FormData, value: string, isChecked: boolean) => {
-        const currentValues = watch(field) || [];
+        const currentValues = (watch(field) as string[]) || [];
         const newValues = isChecked
             ? [...currentValues, value]
             : currentValues.filter(item => item !== value);
