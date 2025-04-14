@@ -11,7 +11,7 @@ import { IBots } from "../../interface";
 export const ProfileRPAs: React.FC = () => {
     const { register, setValue, formState: { errors } } = useForm();
 
-    const [bot, setBot] = useState<IBots | null>(null)
+    const [bot, setBot] = useState<IBots>()
 
     const { id } = useParams<{ id: string }>();
 
@@ -22,7 +22,7 @@ export const ProfileRPAs: React.FC = () => {
             const botsArray: IBots[] = JSON.parse(storedBots);
             const foundBot = botsArray.find((b) => b.id === id);
             setValue("decription", foundBot?.description)
-            setBot(foundBot || null);
+            setBot(foundBot);
         }
     }, [id]);
 
@@ -177,6 +177,7 @@ export const ProfileRPAs: React.FC = () => {
                                             </ul>
                                         </div>
                                     )}
+
                                 </div>
                             </CCard>
                         </CCol>

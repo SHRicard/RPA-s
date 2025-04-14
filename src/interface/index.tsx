@@ -13,7 +13,7 @@ export interface IBots {
     name: string;
     type: string;
     status: string;
-    processes: Process[];
+    processes: Process;
     version?: string;
     createdAt?: string;
     lastUpdate?: string;
