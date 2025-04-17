@@ -37,7 +37,9 @@ const INTEGRATION_OPTIONS = [
             "Keycloak",
             "Azure AD",
             "Google Identity",
-            "AWS IAM"
+            "AWS IAM",
+            "Meta Facebook (Graph API)",
+            "Meta WhatsApp Business API",
         ]
     },
     {
@@ -167,10 +169,31 @@ export const SettingUser = () => {
         ));
     };
 
+    // const copyToClipboard = (text: string) => {
+    //     navigator.clipboard.writeText(text);
+    //     showMessage('Copiado al portapapeles', 'info');
+    // };
     const copyToClipboard = (text: string) => {
-        navigator.clipboard.writeText(text);
-        showMessage('Copiado al portapapeles', 'info');
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(text)
+                .then(() => showMessage('Copiado al portapapeles', 'info'))
+                .catch(() => showMessage('Error al copiar', 'danger'));
+        } else {
+            // Fallback para navegadores antiguos
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand("copy");
+                showMessage('Copiado al portapapeles', 'info');
+            } catch (err) {
+                showMessage('Error al copiar', 'danger');
+            }
+            document.body.removeChild(textArea);
+        }
     };
+
 
     const filteredKeys = savedKeys.filter(key => {
         if (filter === 'active') return key.isActive;
@@ -389,6 +412,7 @@ export const SettingUser = () => {
                                                 <CButton
                                                     color="danger"
                                                     size="sm"
+                                                    disabled={item.isActive}
                                                     onClick={() => confirmDelete(item.id)}
                                                 >
                                                     <FaTrashAlt />

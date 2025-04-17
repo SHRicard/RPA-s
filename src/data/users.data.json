@@ -643,20 +643,5 @@
         "genero": "Masculino",
         "country": "Guatemala",
         "city": "Antigua"
-    },
-    {
-        "_id": "7v0t5r9q4s3p2o1t0u1v2w3",
-        "phone": "(+55) - 21912345678",
-        "email": "daniela.maldonado@outlook.com",
-        "password": "user123",
-        "role": "user",
-        "status": "Activo",
-        "name": "Daniela Maldonado",
-        "avatar": "https://randomuser.me/api/portraits/women/48.jpg",
-        "documents": "56.234.789-2",
-        "dateBirth": "13/01/1994",
-        "genero": "Femenino",
-        "country": "Brasil",
-        "city": "Río de Janeiro"
     }
 ]

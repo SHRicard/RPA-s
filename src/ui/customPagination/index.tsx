@@ -17,6 +17,8 @@ export const CustomPagination: React.FC<CustomPaginationProps> = ({
             <CPaginationItem
                 disabled={currentPage === 1}
                 onClick={() => onPageChange(currentPage - 1)}
+                style={{ cursor: currentPage === 1 ? "default" : "pointer" }}
+
             >
                 Previous
             </CPaginationItem>
@@ -27,6 +29,9 @@ export const CustomPagination: React.FC<CustomPaginationProps> = ({
                     <CPaginationItem
                         key={pageNumber}
                         active={currentPage === pageNumber}
+                        style={{
+                            cursor: currentPage === pageNumber ? "default" : "pointer"
+                        }}
                         onClick={() => onPageChange(pageNumber)}
                     >
                         {pageNumber}
@@ -37,6 +42,7 @@ export const CustomPagination: React.FC<CustomPaginationProps> = ({
             <CPaginationItem
                 disabled={currentPage === totalPages}
                 onClick={() => onPageChange(currentPage + 1)}
+                style={{ cursor: currentPage === totalPages ? "default" : "pointer" }}
             >
                 Next
             </CPaginationItem>

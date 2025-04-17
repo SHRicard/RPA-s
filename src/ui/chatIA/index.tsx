@@ -42,7 +42,7 @@ export const ChatIA = () => {
                     }))
                     .concat({ type: 'pregunta', content: newMessage })
             };
-            const { data } = await axios.post('https://34.238.122.213:1337/api/open-ai/49', conversationPayload);
+            const { data } = await axios.post('http://34.238.122.213:1337/api/open-ai/49', conversationPayload);
             const lastResponse = data?.autos?.[0]?.data?.[0]?.content ?? "Lo siento, no encontré una respuesta válida.";
             const aiMessage = {
                 text: lastResponse,

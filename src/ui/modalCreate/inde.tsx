@@ -130,6 +130,8 @@ const INTEGRATION_OPTIONS = [
     "Microsoft 365",
     "Zoho Workplace",
     "Slack",
+    "Meta Facebook (Graph API)",
+    "Meta WhatsApp Business API",
     "Teams",
 
     // Cloud Services
@@ -151,7 +153,8 @@ const INTEGRATION_OPTIONS = [
     "PostgreSQL",
     "MongoDB",
     "SQL Server",
-    "Oracle DB"
+    "Oracle DB",
+
 ];
 
 const DATA_TYPE_OPTIONS = [
@@ -192,6 +195,87 @@ const DATA_TYPE_OPTIONS = [
     "alertas y notificaciones"
 ];
 
+const DISABLED_INTEGRATIONS = [
+    "JumpCloud",
+    "Oracle ERP",
+    "Oracle Cloud",
+    "Oracle DB",
+    "IBM Cloud",
+    "Zoho Workplace",
+    "Keycloak",
+    "Ping Identity",
+    "Workday",
+    "Azure",
+    "Duo Security (MFA)",
+    "AWS Cognito",
+    "OneLogin",
+    "Okta (SSO)",
+    "Azure AD",
+];
+
+
+const DISABLED_PROCESSES = [
+    // Todos los procesos que no sean de integración, mensajería o reportes
+    "Captura credenciales",
+    "Valida credenciales en base de datos",
+    "Verificación de doble factor",
+    "Gestión de sesiones",
+    "Transformación de datos",
+    "Carga de datos (ETL)",
+    "Validación de formatos",
+    "Normalización de información",
+    "Encriptación de datos",
+    "Registro de auditoría",
+    "Detección de anomalías",
+    "Escalado automático",
+    "Gestión de errores"
+];
+
+
+const DISABLED_AUTOMATED_ACTIONS = [
+    // Autenticación
+    "Autenticación en segundo plano",
+    "Bloqueo de cuentas por seguridad",
+
+    // Procesamiento
+    "Transformación automática de datos",
+    "Conversión de formatos",
+    "Validación de reglas de negocio",
+    "Aplicación de fórmulas calculadas",
+
+    // Mantenimiento
+    "Backup automático",
+    "Limpieza de datos temporales",
+    "Optimización de bases de datos",
+    "Actualización de componentes"
+];
+
+const DISABLED_DATA_TYPE_OPTIONS = [
+    // Autenticación
+    "tokens",
+    "certificados digitales",
+
+    // Registros
+    "registros de auditoría",
+    "trazas de ejecución",
+
+    // Datos personales
+    "información personal (PII)",
+    "datos sensibles",
+    "datos biométricos",
+
+    // Configuraciones
+    "configuraciones de sistema",
+    "parámetros de conexión",
+    "plantillas",
+    "scripts",
+
+    // Transaccionales
+    "datos financieros",
+    "transacciones comerciales",
+    "órdenes de compra",
+];
+
 export const ModalCreate = ({ show, onClose, refresh, setRefresh }: ResponseModalProps) => {
     const { register, handleSubmit, formState: { errors }, reset, setValue, watch } = useForm<FormData>({
         defaultValues: {
@@ -203,6 +287,12 @@ export const ModalCreate = ({ show, onClose, refresh, setRefresh }: ResponseModa
     });
     const { triggerRefresh } = useRefresh();
     const [activeKey] = useState<string | number | undefined>(undefined);
+
+
+    const isClose = () => {
+        reset()
+        onClose(false)
+    }
 
     const generateRandomPerformance = () => {
         const performanceTitles = [
@@ -384,7 +474,7 @@ export const ModalCreate = ({ show, onClose, refresh, setRefresh }: ResponseModa
                     {/* Secciones con checkboxes en acordeón */}
                     <CAccordion activeItemKey={activeKey} >
                         {/* Procesos involucrados */}
-                        <CAccordionItem itemKey="1">
+                        <CAccordionItem itemKey="1" className={errors.processes ? 'border border-danger' : ''} >
                             <CAccordionHeader>Procesos involucrados *</CAccordionHeader>
                             <CAccordionBody>
                                 <CRow>
@@ -396,9 +486,11 @@ export const ModalCreate = ({ show, onClose, refresh, setRefresh }: ResponseModa
                                                 value={option}
                                                 checked={watch("processes")?.includes(option)}
                                                 onChange={(e) => handleCheckboxChange("processes", option, e.target.checked)}
+                                                disabled={DISABLED_PROCESSES.includes(option)}
                                             />
                                         </CCol>
                                     ))}
+
                                 </CRow>
                                 {errors.processes && <div className="text-danger small mt-2">{errors.processes.message}</div>}
                                 <input type="hidden" {...register("processes", { required: "Seleccione al menos un proceso" })} />
@@ -406,18 +498,19 @@ export const ModalCreate = ({ show, onClose, refresh, setRefresh }: ResponseModa
                         </CAccordionItem>
 
                         {/* Acciones a automatizar */}
-                        <CAccordionItem itemKey="2">
+                        <CAccordionItem itemKey="2" className={errors.processes ? 'border border-danger' : ''} >
                             <CAccordionHeader>Acciones a automatizar *</CAccordionHeader>
                             <CAccordionBody>
                                 <CRow>
                                     {AUTOMATED_ACTIONS_OPTIONS.map(option => (
                                         <CCol md={6} key={option}>
                                             <CFormCheck
-                                                id={`action-${option}`}
+                                                id={`automated-action-${option}`}
                                                 label={option}
                                                 value={option}
                                                 checked={watch("automatedActions")?.includes(option)}
                                                 onChange={(e) => handleCheckboxChange("automatedActions", option, e.target.checked)}
+                                                disabled={DISABLED_AUTOMATED_ACTIONS.includes(option)}
                                             />
                                         </CCol>
                                     ))}
@@ -428,7 +521,7 @@ export const ModalCreate = ({ show, onClose, refresh, setRefresh }: ResponseModa
                         </CAccordionItem>
 
                         {/* Aplicaciones a Integrar */}
-                        <CAccordionItem itemKey="3">
+                        <CAccordionItem itemKey="3" className={errors.processes ? 'border border-danger' : ''} >
                             <CAccordionHeader>Aplicaciones a Integrar *</CAccordionHeader>
                             <CAccordionBody>
                                 <CRow>
@@ -440,6 +533,7 @@ export const ModalCreate = ({ show, onClose, refresh, setRefresh }: ResponseModa
                                                 value={option}
                                                 checked={watch("integrations")?.includes(option)}
                                                 onChange={(e) => handleCheckboxChange("integrations", option, e.target.checked)}
+                                                disabled={DISABLED_INTEGRATIONS.includes(option)}
                                             />
                                         </CCol>
                                     ))}
@@ -450,18 +544,19 @@ export const ModalCreate = ({ show, onClose, refresh, setRefresh }: ResponseModa
                         </CAccordionItem>
 
                         {/* Tipos de datos involucrados */}
-                        <CAccordionItem itemKey="4">
+                        <CAccordionItem itemKey="4" className={errors.processes ? 'border border-danger' : ''} >
                             <CAccordionHeader>Tipos de datos involucrados *</CAccordionHeader>
                             <CAccordionBody>
                                 <CRow>
                                     {DATA_TYPE_OPTIONS.map(option => (
                                         <CCol md={6} key={option}>
                                             <CFormCheck
-                                                id={`dataType-${option}`}
+                                                id={`data-type-${option}`}
                                                 label={option}
                                                 value={option}
                                                 checked={watch("dataTypes")?.includes(option)}
                                                 onChange={(e) => handleCheckboxChange("dataTypes", option, e.target.checked)}
+                                                disabled={DISABLED_DATA_TYPE_OPTIONS.includes(option)}
                                             />
                                         </CCol>
                                     ))}
@@ -476,7 +571,7 @@ export const ModalCreate = ({ show, onClose, refresh, setRefresh }: ResponseModa
                     <BtnPrimary
                         label="Cancelar"
                         color="secondary"
-                        onClick={() => onClose(false)}
+                        onClick={isClose}
                         type="button"
                     />
                     <BtnPrimary
